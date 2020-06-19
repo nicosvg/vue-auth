@@ -41,12 +41,10 @@ const router = new VueRouter({
 
 router.beforeEach(async (to, from, next) => {
   if (to.meta.requiresAuth && !authenticated) {
-    await startAuthentication().then(() =>
-      console.log("started authentication")
-    );
-    next(false);
+    await startAuthentication();
+    return next(false);
   }
-  next();
+  return next();
 });
 
 export default router;

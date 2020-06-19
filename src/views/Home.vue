@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <HelloWorld :msg="'Welcome ' + user.given_name" />
   </div>
 </template>
 
@@ -13,6 +13,15 @@ export default {
   name: "Home",
   components: {
     HelloWorld
+  },
+  beforeCreate() {
+    console.log("before create");
+  },
+
+  computed: {
+    user() {
+      return this.$store.state.user;
+    }
   }
 };
 </script>
